@@ -11,7 +11,7 @@ interface FavouriteScreen {}
 const FavouriteScreen: FC<FavouriteScreen> = (props) => {
  const navigation =useNavigation()
  const state = useSelector(favouriteSelectors.getFavourite);
-  console.log('props', props);
+  
   return (
     <SafeAreaView>
      <FlatList

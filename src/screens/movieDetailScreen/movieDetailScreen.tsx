@@ -1,4 +1,4 @@
-import React, {FC, useState, useEffect} from 'react';
+import React, {FC, useState, useEffect,useLayoutEffect} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -29,19 +29,19 @@ const MovieDetailScreen: FC<MovieDetailScreen> = (props) => {
   } = route.params;
   const state = useSelector(favouriteSelectors.getFavourite);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    navigation.setOptions({
-      title: '',
-      headerRight: () => {
-        return (
-          <View>
-            <Button title="Back to search" onPress={()=>navigation.navigate('SearchScreen')} />
-          </View>
-        );
-      },
-    });
-  }, [])
+useLayoutEffect(() => {
+  navigation.setOptions({
+    title: '',
+    headerRight: () => {
+      return (
+        <View>
+          <Button title="Back to search" onPress={()=>navigation.navigate('SearchScreen')} />
+        </View>
+      );
+    },
+  });
+}, [])
+  
 
 
   return (

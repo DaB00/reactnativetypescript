@@ -1,4 +1,4 @@
-import React ,{FC,useState,useEffect} from 'react'
+import React ,{FC,useState,useEffect,useLayoutEffect} from 'react'
 import { SafeAreaView, Text,Button ,View,Image,TextInput,StyleSheet,FlatList,TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,22 +13,21 @@ const SearchScreen:FC<SearchScreen>=(props)=>{
     const [Textsearch, setTextsearch] = useState<string>('')
     const dispatch =useDispatch()
     const data = useSelector(historySelectors.getHistory)
- 
-    useEffect(() => {
-      navigation.setOptions({
-        title: '',
-        headerRight: () => {
-          return (
-            <View>
-              <Button
-                title="Favourite"
-                onPress={() => navigation.navigate('FavouriteScreen')}
-              />
-            </View>
-          );
-        },
-      });
-    }, []);
+ useLayoutEffect(() => {
+  navigation.setOptions({
+    title: '',
+    headerRight: () => {
+      return (
+        <View>
+          <Button
+            title="Favourite"
+            onPress={() => navigation.navigate('FavouriteScreen')}
+          />
+        </View>
+      );
+    },
+  });
+ }, [navigation])
     
     return(
         <SafeAreaView>
